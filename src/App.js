@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+const PrototypeForm = {
+  key1: 'Barbara',
+  key2: 'Hepworth',
+  key3: 'bhepworth@react.com',
+  key4: 'love cats'
+};
+
+const MyFormComponent = () => {
+  const [formData] = useState(PrototypeForm);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {Object.keys(formData).map((key, index) => (
+        <div key={index} style={{ marginBottom: '10px' }}>
+          <label>
+            {key}:
+            <input
+              type="text"
+              value={formData[key]}
+              readOnly
+              style={{ 
+                backgroundColor: 'rgb(204, 226, 230)',
+                border: 'none',
+                padding: '5px',
+                borderRadius: '7px',
+                marginLeft: '10px' }}
+            />
+          </label>
+        </div>
+      ))}
+
+      <div>
+        {Object.keys(formData).map((key, index) => (
+          <p key={index}>
+            {key}: {formData[key]}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }
 
-export default App;
+export default MyFormComponent;
